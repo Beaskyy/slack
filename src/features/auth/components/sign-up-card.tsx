@@ -47,14 +47,14 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             type="password"
             required
           />
-          {/* <Input
+          <Input
             disabled={false}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm password"
             type="password"
             required
-          /> */}
+          />
           <Button type="submit" className="w-full" size="lg" disabled={false}>
             Continue
           </Button>
