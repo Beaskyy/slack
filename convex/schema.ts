@@ -6,7 +6,7 @@ const schema = defineSchema({
   ...authTables,
   workspaces: defineTable({
     name: v.string(),
-    id: v.id("users"),
+    userId: v.id("users"),
     joinCode: v.string(),
   })
 });
