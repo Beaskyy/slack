@@ -5,6 +5,7 @@ import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { Modals } from "@/components/modals";
 import { Toaster } from "@/components/ui/sonner";
+import { ClientOnly } from "@/components/client-only";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
+        <ClientOnly>
         <body className={inter.className}>
           <ConvexClientProvider>
             <Toaster />
@@ -28,6 +30,7 @@ export default function RootLayout({
             {children}
           </ConvexClientProvider>
         </body>
+        </ClientOnly>
       </html>
     </ConvexAuthNextjsServerProvider>
   );
