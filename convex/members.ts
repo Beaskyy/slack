@@ -35,19 +35,19 @@ export const get = query({
       )
       .collect();
 
-      const memebers = []
+      const members = []
 
       for (const member of data) {
         const user = await populateUser(ctx, member.userId)
 
-        if(userId) {
-          memebers.push({
+        if(user) {
+          members.push({
             ...member,
             user
           })
         } 
       }
-      return member
+      return members 
   },
 });
 export const current = query({
