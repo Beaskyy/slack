@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
 import { useJoin } from "@/features/workspaces/api/use-join";
-import useWorkspaceId from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import Image from "next/image";
@@ -20,15 +20,15 @@ const JoinPage = () => {
 
   const { data, isLoading } = useGetWorkspaceInfo({ id: workspaceId });
 
-  const isMember = useMemo(() => data?.isMember, [data?.isMember])
+  const isMember = useMemo(() => data?.isMember, [data?.isMember]);
 
   useEffect(() => {
-    if(isMember) {
+    if (isMember) {
       router.push(`/workspace/${workspaceId}`);
       toast.success("Already a member of this workspace.");
       return;
     }
-  }, [isMember, router, workspaceId])
+  }, [isMember, router, workspaceId]);
 
   const handleComplete = (value: string) => {
     mutate(
@@ -70,7 +70,10 @@ const JoinPage = () => {
           onComplete={handleComplete}
           length={6}
           classNames={{
-            container: cn("flex gap-x-2", isPending && "opacity-50 cursor-not-allowed "),
+            container: cn(
+              "flex gap-x-2",
+              isPending && "opacity-50 cursor-not-allowed "
+            ),
             character:
               "uppercase h-auto rounded-md border border-gray-300 flex items-center justify-center text-lg font-medium text-gray-500",
             characterInactive: "bg-muted",
