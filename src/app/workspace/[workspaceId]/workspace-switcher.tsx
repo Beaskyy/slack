@@ -7,7 +7,7 @@ import {
 import { useCreateWorkspaceModal } from "@/features/store/use-create-workspace-modal";
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
-import useWorkspaceId from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Loader, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";

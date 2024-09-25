@@ -72,6 +72,7 @@ export const WorkspaceSidebar = () => {
             label={item.name}
             icon={Hash}
             id={item._id}
+            variant={channelId === item._id ? "active" : "default"}
           />
         ))}
       </WorkspaceSection>
