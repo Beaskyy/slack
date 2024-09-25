@@ -3,7 +3,7 @@ import { Id } from "../../../../convex/_generated/dataModel";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import useWorkspaceId from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const userItemVariants = cva(
@@ -46,7 +46,9 @@ export const UserItem = ({
       <Link href={`/workspace${workspaceId}/member/${id}`}>
         <Avatar className="size-5 rounded-md mr-1">
           <AvatarImage className="rounded-md" src={image} />
-            <AvatarFallback className="rounded-md text-white bg-sky-500 text-xs ">{avatarFallback}</AvatarFallback>
+          <AvatarFallback className="rounded-md text-white bg-sky-500 text-xs ">
+            {avatarFallback}
+          </AvatarFallback>
         </Avatar>
         <span className="text-sm truncate">{label}</span>
       </Link>

@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace";
 import { useUpdateWorkspace } from "@/features/workspaces/api/use-update-workspace";
 import { useConfirm } from "@/hooks/use-confirm";
-import useWorkspaceId from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -47,7 +47,7 @@ const PreferencesModal = ({
 
   const handleRemove = async () => {
     const ok = await confirm();
-     
+
     if (!ok) return;
 
     removeWorkspace(
@@ -87,7 +87,7 @@ const PreferencesModal = ({
   };
   return (
     <>
-    <ConfirmDialog  />
+      <ConfirmDialog />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="p-0 bg-gray-50 overflow-hidden">
           <DialogHeader className="p-4 border-b border-white">
