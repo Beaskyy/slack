@@ -10,7 +10,7 @@ import { useCreateChannelModal } from "../store/use-create-channel-modal";
 import { Input } from "@/components/ui/input";
 import { ChangeEvent, EventHandler, useState } from "react";
 import { useCreateChannel } from "../api/use-create-channel";
-import useWorkspaceId from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 export const CreateChannelModal = () => {
   const workspaceId = useWorkspaceId();
