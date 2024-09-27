@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useGetChannel } from "@/features/channels/api/use-get-channel";
 import { useChannelId } from "@/hooks/use-channel-id";
@@ -30,11 +30,13 @@ const ChannelIdPage = () => {
       </div>
     );
   }
-  return <div className="flex flex-col h-full">
-    <Header title={channel.name} />
-    <div className="flex-1" />
-    <ChatInput /> 
-  </div>;
+  return (
+    <div className="flex flex-col h-full">
+      <Header title={channel.name} />
+      <div className="flex-1" />
+      <ChatInput placeholder={`message # ${channel.name}`} />
+    </div>
+  );
 };
 
 export default ChannelIdPage;
