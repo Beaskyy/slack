@@ -14,6 +14,7 @@ import { ImageIcon, Smile } from "lucide-react";
 import { MdSend } from "react-icons/md";
 import { Hint } from "./hint";
 import { cn } from "@/lib/utils";
+import { EmojiPopover } from "./emoji-popover";
 // import { Delta, Op } from "quill/core";
 
 type EditorValue = {
@@ -163,7 +164,7 @@ const Editor = ({
             </Button>
           </Hint>
           {variant === "create" && (
-            <Hint label="Image">
+            <EmojiPopover onEmojiSelect={() => {}}>
               <Button
                 disabled={disabled}
                 variant="ghost"
@@ -172,7 +173,7 @@ const Editor = ({
               >
                 <ImageIcon className="size-4" />
               </Button>
-            </Hint>
+            </EmojiPopover>
           )}
           {variant === "update" && (
             <div className="ml-auto flex items-center gap-x-2">
