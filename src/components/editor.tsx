@@ -135,6 +135,12 @@ const Editor = ({
     }
   };
 
+  const onEmojiSelect = (emoji: any) => {
+    const quill = quillRef.current;
+
+    quill?.insertText(quill?.getSelection()?.index || 0, emoji.native);
+  };
+
   const isEmpty = text.replace(/<(.|\n)*?>/g, "").trim().length === 0;
   console.log({ isEmpty, text });
 
@@ -153,18 +159,13 @@ const Editor = ({
               <PiTextAa className="size-4" />
             </Button>
           </Hint>
-          <Hint label="Emoji">
-            <Button
-              disabled={disabled}
-              variant="ghost"
-              size="iconSm"
-              onClick={() => {}}
-            >
+          <EmojiPopover onEmojiSelect={onEmojiSelect}>
+            <Button disabled={disabled} variant="ghost" size="iconSm">
               <Smile className="size-4" />
             </Button>
-          </Hint>
+          </EmojiPopover>
           {variant === "create" && (
-            <EmojiPopover onEmojiSelect={() => {}}>
+            <Hint label="Image">
               <Button
                 disabled={disabled}
                 variant="ghost"
@@ -173,7 +174,7 @@ const Editor = ({
               >
                 <ImageIcon className="size-4" />
               </Button>
-            </EmojiPopover>
+            </Hint>
           )}
           {variant === "update" && (
             <div className="ml-auto flex items-center gap-x-2">

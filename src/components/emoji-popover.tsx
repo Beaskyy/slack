@@ -17,7 +17,7 @@ import {
 interface EmojiPopoverProps {
   children: React.ReactNode;
   hint?: string;
-  onEmojiSelect?: (emoji: string) => void;
+  onEmojiSelect: (emoji: any) => void;
 }
 
 export const EmojiPopover = ({
@@ -27,6 +27,15 @@ export const EmojiPopover = ({
 }: EmojiPopoverProps) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const onSelect = (emoji: any) => {
+    onEmojiSelect(emoji);
+    setPopoverOpen(false);
+
+    setTimeout(() => {
+      setTooltipOpen(true);
+    }, 500);
+  };
   return (
     <TooltipProvider>
       <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
@@ -43,12 +52,7 @@ export const EmojiPopover = ({
           </TooltipContent>
         </Tooltip>
         <PopoverContent className="p-0 w-full border-none shadow-none">
-          <Picker
-            data={data}
-            onEmojiSelect={(x) => {
-              console.log(x);
-            }}
-          />
+          <Picker data={data} onEmojiSelect={onSelect} />
         </PopoverContent>
       </Popover>
     </TooltipProvider>
