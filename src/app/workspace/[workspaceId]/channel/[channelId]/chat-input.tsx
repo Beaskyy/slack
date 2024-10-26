@@ -4,10 +4,20 @@ import { useRef } from "react";
 
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
+const handleSubmit = ({
+  body,
+  image,
+}: {
+  body: string;
+  image: File | null;
+}) => {
+  console.log({ body, image });
+};
+
 interface ChatInputProps {
   placeholder: string;
 }
-export const ChatInput = ({placeholder}: ChatInputProps) => {
+export const ChatInput = ({ placeholder }: ChatInputProps) => {
   const editorRef = useRef<Quill | null>(null);
 
   return (
@@ -15,7 +25,7 @@ export const ChatInput = ({placeholder}: ChatInputProps) => {
       <Editor
         variant="create"
         placeholder={placeholder}
-        onSubmit={() => {}}
+        onSubmit={handleSubmit}
         disabled={false}
         innerRef={editorRef}
       />
