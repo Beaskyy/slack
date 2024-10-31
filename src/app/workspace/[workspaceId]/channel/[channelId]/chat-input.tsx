@@ -65,17 +65,16 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
           body: image,
         });
 
+        if (!result.ok) {
+          throw new Error("Failed to upload image");
+        }
+
         const { storageId } = await result.json();
+
+        values.image = storageId;
       }
 
-      await createMessage(
-        {
-          channelId,
-          workspaceId,
-          body,
-        },
-        { throwError: true }
-      );
+      await createMessage(values, { throwError: true });
 
       setEditorKey((prevKey) => prevKey + 1);
     } catch (error) {
