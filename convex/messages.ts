@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { QueryCtx, mutation } from "./_generated/server";
+import { QueryCtx, mutation, query } from "./_generated/server";
 import { auth } from "./auth";
 import { Id } from "./_generated/dataModel";
 
@@ -30,13 +30,13 @@ const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
     };
   }
 
-  const lastMessageUser = await populateUser(ctx, lastMessageMember.userId)
+  const lastMessageUser = await populateUser(ctx, lastMessageMember.userId);
 
   return {
     count: messages.length,
     image: lastMessageUser?.image,
     timestamp: lastMessage._creationTime,
-  }
+  };
 };
 
 const populateReactions = (ctx: QueryCtx, messageId: Id<"messages">) => {
@@ -66,6 +66,15 @@ const getMember = async (
     )
     .unique();
 };
+
+export const get = query({
+  args: {
+    channelId: v.optional(v.id("channels")),
+    conversationId: v.optional(v.id("conversations")),
+    parentMessageId: v.optional(v.id("messages")),
+  },
+  handler: async (ctx, args) => {},
+});
 
 export const create = mutation({
   args: {
