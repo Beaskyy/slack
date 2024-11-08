@@ -25,7 +25,7 @@ export const MessageList = ({
 }: MessageListProps) => {
   return (
     <div className="flex-1 flex flex-col-reverse pb-4 overflow-y-auto messages-scrollbar">
-      MessageList
+      {data?.map((message) => <div>{JSON.stringify(message)}</div>)}
     </div>
   );
 };
