@@ -1,6 +1,7 @@
-import { format } from "date-fns";
+import { format, isToday, isYesterday } from "date-fns";
 
 import { GetMessagesReturnType } from "@/features/messages/api/use-get-message";
+import { Message } from "./message";
 
 interface MessageListProps {
   memberName?: string;
@@ -13,6 +14,13 @@ interface MessageListProps {
   isLoadingMore: boolean;
   canLoadMore: boolean;
 }
+
+const formatDateLabel = (dateKey: string) => {
+  const date = new Date(dateKey);
+  if (isToday(date)) return "Today";
+  if (isYesterday(date)) return "Yesterday";
+  return format(date, "EEEE MMMM d");
+};
 
 export const MessageList = ({
   memberName,
@@ -43,10 +51,34 @@ export const MessageList = ({
         <div key={dateKey}>
           <div className="text-center my-2 relative">
             <hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
-            <span>
+            <span className="relative inline-block bg-white px-4 rounded-full text-xs border border-gray-300 shadow-sm">
               {formatDateLabel(dateKey)}
             </span>
           </div>
+          {messages.map((message, index) => {
+            return (
+              <Message 
+                key={message._id}
+                id={message._id}
+                memberId={message.memberId}
+                authorImage={message.user.image}
+                authorName={message.user.name}
+                isAuthor={false}
+                reactions={message.reactions}
+                body={message.body}
+                image={message.image}
+                updatedAt={message.updatedAt}
+                createdAt={message._creationTime}
+                isEditing={false}
+                setEditingId={() => {}}
+                isCompact={false}
+                hideThreadButton={false}
+                threadCount={message.threadCount}
+                threadImage={message.threadImage}
+                threadTimestamp={message.threadTimestamp}
+              /> 
+            );
+          })}
         </div>
       ))}
     </div>
